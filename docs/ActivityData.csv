@@ -14,17 +14,17 @@ B1867,,,,,2023,,Electricity,,,kWh,44956.454
 B1868,,,,,2023,,Electricity,,,kWh,106728.394
 B2074,,,,,2023,,Electricity,,,kWh,49348
 B2074,,,,,2023,,Natural Gas,,,therms,25.981
-Enterprise,,,,,2023,,Operational Expense,Manufacturing,Electronic Computer Manufacturing,USD,222192.4865
-Enterprise,,,,,2023,,Operational Expense,Manufacturing,All Other Miscellaneous General Purpose Machinery Manufacturing,USD,4247311.159
-Enterprise,,,,,2023,,Operational Expense,"Professional, Scientific, and Technical Services",All Other Legal Services,USD,533840.6446
-Enterprise,,,,,2023,,Operational Expense,"Professional, Scientific, and Technical Services",Human Resources Consulting Services,USD,130615.2221
-Enterprise,,,,,2023,,Operational Expense,"Professional, Scientific, and Technical Services",Landscape Architectural Services,USD,988346.4028
-Enterprise,,,,,2023,,Operational Expense,Administrative and Support and Waste Mgmt. Services,Facilities Support Services,USD,54157.6646
-Enterprise,,,,,2023,,Operational Expense,Administrative and Support and Waste Mgmt. Services,Janitorial Services,USD,42621.1842
-Enterprise,,,,,2023,,Operational Expense,Administrative and Support and Waste Mgmt. Services,Office Administrative Services,USD,60131.3496
-Enterprise,,,,,2023,,Operational Expense,Administrative and Support and Waste Mgmt. Services,Security Systems Services (except Locksmiths),USD,15929.27574
-Enterprise,,,,,2023,,Operational Expense,Educational Services,Professional and Management Development Training,USD,321181.538
-Enterprise,,,,,2023,,Operational Expense,Information,Wireless Telecommunications Carriers (except Satellite),USD,1795761.139
+Enterprise,,,,,2023,,Capital Goods,Manufacturing,Electronic Computer Manufacturing,USD,22219.24
+Enterprise,,,,,2023,,Capital Goods,Manufacturing,All Other Miscellaneous General Purpose Machinery Manufacturing,USD,424731.11
+Enterprise,,,,,2023,,Purchased Goods and Services,"Professional, Scientific, and Technical Services",All Other Legal Services,USD,533840.64
+Enterprise,,,,,2023,,Purchased Goods and Services,"Professional, Scientific, and Technical Services",Human Resources Consulting Services,USD,130615.22
+Enterprise,,,,,2023,,Purchased Goods and Services,"Professional, Scientific, and Technical Services",Landscape Architectural Services,USD,988346.4
+Enterprise,,,,,2023,,Purchased Goods and Services,Administrative and Support and Waste Mgmt. Services,Facilities Support Services,USD,154157.66
+Enterprise,,,,,2023,,Purchased Goods and Services,Administrative and Support and Waste Mgmt. Services,Janitorial Services,USD,42621.18
+Enterprise,,,,,2023,,Purchased Goods and Services,Administrative and Support and Waste Mgmt. Services,Office Administrative Services,USD,160131.34
+Enterprise,,,,,2023,,Purchased Goods and Services,Administrative and Support and Waste Mgmt. Services,Security Systems Services (except Locksmiths),USD,15929.275
+Enterprise,,,,,2023,,Purchased Goods and Services,Educational Services,Professional and Management Development Training,USD,321181.5
+Enterprise,,,,,2023,,Purchased Goods and Services,Information,Wireless Telecommunications Carriers (except Satellite),USD,1795761.13
 Enterprise,,,,,2023,,Business Travel,Ground Travel,Passenger Car,vehicle-mile,15000
 Enterprise,,,,,2023,,Business Travel,Ground Travel,Light-Duty Truck,vehicle-mile,500
 Enterprise,,,,,2023,,Business Travel,Rail Travel,Intercity Rail - National Average,passenger-mile,37000

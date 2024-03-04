@@ -43,10 +43,10 @@ Building,Used Oil,Stationary
 Building,Steam,Indirect Energy
 Building,Chilled Water,Indirect Energy
 Building,Electricity,Indirect Energy
-Building,Operational Expense,Purchased Goods and Services
-Building,Capital Expense,Capital Goods
-Enterprise,Operational Expense,Purchased Goods and Services
-Enterprise,Capital Expense,Capital Goods
+Building,Purchased Goods and Services,Purchased Goods and Services
+Building,Capital Goods,Capital Goods
+Enterprise,Purchased Goods and Services,Purchased Goods and Services
+Enterprise,Capital Goods,Capital Goods
 Building,Business Travel,Business Travel
 Building,Employee Commuting,Employee Commuting
 Enterprise,Business Travel,Business Travel

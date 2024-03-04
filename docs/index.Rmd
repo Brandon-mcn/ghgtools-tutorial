@@ -57,10 +57,12 @@ EFL_CO2e[EFL_CO2e == ""] <- NA
 setnames(EFL_CO2e, "ef_activeyear", "year")
 ```
 
-You can browse the consolidated EFL below:
+You can browse the emission factor library below:
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
-kbl(EFL_CO2e) %>%
+EFL_CO2e.narm <- EFL_CO2e
+EFL_CO2e.narm[is.na(EFL_CO2e.narm)] <- ""
+kbl(EFL_CO2e.narm) %>%
   kable_material(c("striped", "hover")) %>%
   scroll_box(width = "100%", height = "400px")
 ```
@@ -72,7 +74,9 @@ Now we must populate our asset portfolio and activity data. This tutorial includ
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 AssetPortfolio <- fread("AssetPortfolio.csv")
-kbl(AssetPortfolio) %>%
+AssetPortfolio.narm <- AssetPortfolio
+AssetPortfolio.narm[is.na(AssetPortfolio.narm)] <- ""
+kbl(AssetPortfolio.narm) %>%
   kable_material(c("striped", "hover")) %>%
   scroll_box(width = "100%", height = "400px")
 ```
@@ -82,7 +86,9 @@ kbl(AssetPortfolio) %>%
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 ActivityData <- fread("ActivityData.csv")
-kbl(ActivityData) %>%
+ActivityData.narm <- ActivityData
+ActivityData.narm[is.na(ActivityData.narm)] <- ""
+kbl(ActivityData.narm) %>%
   kable_material(c("striped", "hover")) %>%
   scroll_box(width = "100%", height = "400px")
 ```
@@ -102,12 +108,14 @@ GHGrawdata <- data.table(merge.data.table(DT4, EFL_CO2e, by = c("year", "service
 GHGrawdata[, kg_co2e := usage * kgco2e_perunit]
 GHGrawdata[, MT_co2e := kg_co2e/1000]
 setcolorder(GHGrawdata, c("asset_id", "asset_type", "asset_subtype", "address", "city", "state", "zip", "country", "region", "subregion", "business_unit", "year_built", "sqft", "service_type", "unit", "vendor", "account_id", "meter_number", "date", "year", "cost", "usage", "emission_category", "service_subcategory1", "service_subcategory2", "emission_scope", "kgco2e_perunit", "kg_co2e", "MT_co2e", "ef_source", "ef_publishdate"))
+GHGrawdata[is.na(GHGrawdata)] <- ""
 fwrite(GHGrawdata, "GHGrawdata.csv")
 ```
 
 The GHG inventory raw data output looks like this:
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
+
 kbl(GHGrawdata) %>%
   kable_material(c("striped", "hover")) %>%
   scroll_box(width = "100%", height = "400px")
@@ -118,8 +126,14 @@ With our GHG inventory calculated, we can produce a number of charts and visuals
 
 ```{r, echo=FALSE, message = FALSE, warning=FALSE}
 ghg_summary <- GHGrawdata[, .(EmissionTotal = sum(MT_co2e)), by = emission_scope]
+ghg_summary[, percentage := (EmissionTotal / sum(EmissionTotal))*100]
 GHG_sum_chart <- ggplot(ghg_summary, aes(x = emission_scope, y = EmissionTotal)) +
-  geom_bar(stat = "identity", fill = "darkgreen", color = "black") +
+  geom_bar(stat = "identity", width = 0.8, fill = "grey", color = "black") +
+  geom_text(aes(label = paste0(round(percentage), "%")),
+            position = position_stack(vjust = 0.5),
+            size = 4,
+            fontface = "bold",
+            color = "black") +
   labs(title = "GHG Emissions Total",
        x = "",
        y = "MT CO2e")
@@ -129,10 +143,10 @@ print(GHG_sum_chart)
 <br>
 
 ```{r, echo=FALSE, message = FALSE, warning=FALSE}
-Ecat_summary <- GHGrawdata[, .(EmissionTotal = sum(MT_co2e)), by = emission_category]
-Ecat_sum_chart <- ggplot(Ecat_summary, aes(x = reorder(emission_category, EmissionTotal), y = EmissionTotal)) +
-  geom_bar(stat = "identity", fill = "darkgreen", color = "black") +
-  labs(title = "GHG Emissions by Category",
+Ecat_summary <- GHGrawdata[, .(EmissionTotal = sum(MT_co2e)), by = service_type]
+Ecat_sum_chart <- ggplot(Ecat_summary, aes(x = reorder(service_type, EmissionTotal), y = EmissionTotal)) +
+  geom_bar(stat = "identity", width = 0.7, fill = "darkgreen", color = "black") +
+  labs(title = "GHG Emissions by Activity Type",
        x = "",
        y = "MT CO2e") +
   coord_flip()
@@ -148,13 +162,13 @@ state_data[, EmissionTotal := round(EmissionTotal, 0)]
 state_data[, mid := EmissionTotal - (0.5 * EmissionTotal)]
 state_data_chart <- ggplot(state_data, aes(x = state, y = EmissionTotal)) +
   geom_bar(stat = "identity", width = 0.5, fill = "lightgrey", color = "black") +
-   geom_text(aes(x = state, y = mid, label = format(EmissionTotal, nsmall = 0)), 
-            size = 5,
+   geom_text(aes(x = state, y = mid, label = paste0(EmissionTotal, " MT CO2e")), 
+            size = 4,
             fontface = "bold", 
             color = "black") +
   labs(title = "Scope 1 & 2 Emissions by State",
        x = "",
-       y = "MT CO2e") +
+       y = "") +
   coord_flip()
 print(state_data_chart)
 ```
