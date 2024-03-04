@@ -1,25 +1,31 @@
----
-title: "ghgtools-tutorial"
-author: "Brandon-mcn"
-date: March 3, 2024
-output: github_document
----
-
-```{r setup, include=FALSE, echo=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+ghgtools-tutorial
+================
+Brandon-mcn
+March 3, 2024
 
 Welcome to the ghgtools inventory data module!
 
-Add your activity data template to the GHG Inventory Report project folder. You can either drag and drop activity data into the provided template 'ghgtools_ActivityData' or overwrite this file with your own activity data file. Please ensure the data is formatted correctly and saved as 'ghgtools_ActivityData.xlsx'
+Add your activity data template to the GHG Inventory Report project
+folder. You can either drag and drop activity data into the provided
+template ‘ghgtools_ActivityData’ or overwrite this file with your own
+activity data file. Please ensure the data is formatted correctly and
+saved as ‘ghgtools_ActivityData.xlsx’
 
-Add your asset portfolio data template to the GHG Inventory Report project folder. You can either drag and drop activity data into the provided template 'ghgtools_AssetPortfolio_V1' or overwrite this file with your own activity data file. Please ensure the data is formatted correctly and saved as 'ghgtools_AssetPortfolio_V1.xlsx'
+Add your asset portfolio data template to the GHG Inventory Report
+project folder. You can either drag and drop activity data into the
+provided template ‘ghgtools_AssetPortfolio_V1’ or overwrite this file
+with your own activity data file. Please ensure the data is formatted
+correctly and saved as ‘ghgtools_AssetPortfolio_V1.xlsx’
 
-
-```{r, include=TRUE, warning=FALSE}
+``` r
 #initiate ghgtools
 
 if (!require("data.table")) install.packages("data.table")
+```
+
+    ## Loading required package: data.table
+
+``` r
 library(data.table)
 
 #Select GWP 
@@ -74,10 +80,9 @@ GHGrawdata[, kg_co2e := usage * kgco2e_perunit]
 GHGrawdata[, MT_co2e := kg_co2e/1000]
 setcolorder(GHGrawdata, c("asset_id", "asset_type", "asset_subtype", "address", "city", "state", "zip", "country", "region", "subregion", "business_unit", "year_built", "sqft", "service_type", "unit", "vendor", "account_id", "meter_number", "date", "year", "cost", "usage", "emission_category", "service_subcategory1", "service_subcategory2", "emission_scope", "kgco2e_perunit", "kg_co2e", "MT_co2e", "ef_source", "ef_publishdate"))
 fwrite(GHGrawdata, "GHGrawdata.csv")
-
 ```
 
-```{r, include=TRUE, warning=FALSE}
+``` r
 ghg_summary <- GHGrawdata[, .(EmissionTotal = sum(MT_co2e)), by = emission_scope]
 
 library(ggplot2)
@@ -87,5 +92,6 @@ GHG_sum_chart <- ggplot(ghg_summary, aes(x = emission_scope, y = EmissionTotal))
        x = "",
        y = "MT CO2e")
 print(GHG_sum_chart)
-
 ```
+
+![](GHG-Inventory-Data_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
