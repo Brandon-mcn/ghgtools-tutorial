@@ -144,9 +144,15 @@ print(Ecat_sum_chart)
 ```{r, echo=FALSE, message = FALSE, warning=FALSE}
 scope1and2 <- c("Scope 1", "Scope 2")
 state_data <- GHGrawdata[emission_scope %in% scope1and2, .(EmissionTotal = sum(MT_co2e)), by = state]
-state_data_chart <- ggplot(state_data, aes(x = reorder(state, EmissionTotal), y = EmissionTotal)) +
-  geom_bar(stat = "identity", fill = "darkgreen", color = "black") +
-  labs(title = "GHG Emissions by State",
+state_data[, EmissionTotal := round(EmissionTotal, 0)]
+state_data[, mid := EmissionTotal - (0.5 * EmissionTotal)]
+state_data_chart <- ggplot(state_data, aes(x = state, y = EmissionTotal)) +
+  geom_bar(stat = "identity", width = 0.5, fill = "lightgrey", color = "black") +
+   geom_text(aes(x = state, y = mid, label = format(EmissionTotal, nsmall = 0)), 
+            size = 5,
+            fontface = "bold", 
+            color = "black") +
+  labs(title = "Scope 1 & 2 Emissions by State",
        x = "",
        y = "MT CO2e") +
   coord_flip()
@@ -156,7 +162,9 @@ print(state_data_chart)
 <br>
 These charts are just the tip of the iceberg. Using [ggplot2](https://r-graph-gallery.com/ggplot2-package.html) we can create a wide variety of charts and data visualizations, with almost infinite customization. 
 
-**If you want to start using ghgtools** - follow this link to the [ghgtools-template](https://github.com/Brandon-mcn/ghgtools-template) repository on github. You can clone this repository, which has all the data templates, emission factor library, and brief instructions on how to get started. Thank you for using ghgtools! 
+**If you want to start using ghgtools** - follow this link to the [ghgtools-template](https://github.com/Brandon-mcn/ghgtools-template) repository on github. You can clone this repository, which has all the data templates, emission factor library, and brief instructions on how to get started.
+
+<br>
 
 
 
