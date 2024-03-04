@@ -45,8 +45,6 @@ GWP <- "AR5"
 The emission factor library, abbreviated as EFL, is loaded from the ghgtools directory. The raw form of the EFL has a row of data for each greenhouse gas produced by the activity. For example, burning natural gas will generate CO2, CH4 and N2O. The following code loads the raw EFL and consolidates each activity into the CO2e emission factor using the selected GWPs. 
 
 ```{r, include=TRUE, warning=FALSE}
-#load emission factor library
-
 EFL <- fread("EFL.csv")
 GWPs <- fread("GWPs.csv")
 GWPs <- GWPs[, .(ghg,get(GWP))]

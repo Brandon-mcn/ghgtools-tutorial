@@ -635,9 +635,7 @@ greenhouse gas produced by the activity. For example, burning natural
 gas will generate CO2, CH4 and N2O. The following code loads the raw EFL
 and consolidates each activity into the CO2e emission factor using the
 selected GWPs.</p>
-<pre class="r"><code>#load emission factor library
-
-EFL &lt;- fread(&quot;EFL.csv&quot;)
+<pre class="r"><code>EFL &lt;- fread(&quot;EFL.csv&quot;)
 GWPs &lt;- fread(&quot;GWPs.csv&quot;)
 GWPs &lt;- GWPs[, .(ghg,get(GWP))]
 colnames(GWPs)[2] &lt;- &quot;GWP&quot;
