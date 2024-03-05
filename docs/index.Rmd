@@ -18,7 +18,7 @@ library(scales)
 
 ## The Basics
 
-ghgtools uses a set of standardized data templates to match each record of activity data to an emission factor using information about your assets. The GHG inventory of any entity can be summarized as follows: _Assets_, such as buildings, vehicles, and equipment, engage in _Activities_, such as electricity consumption, travel, or purchasing, which each have a specific _Emission Factor_ that tells us the rate at which that activity generates GHG emissions. These three variables, assets, actives, and emission factors, compose the underlying calculation methodology behind ghgtools. Our methodology is built on the best practices set forth by the [GHG Protocol Corporate Standard](https://ghgprotocol.org/corporate-standard).
+The GHG inventory of any entity can be summarized as follows: _Assets_, such as buildings, vehicles, and equipment, engage in _Activities_, such as electricity consumption, travel, or purchasing, which each have a specific _Emission Factor_ that tells us the rate at which that activity generates GHG emissions. These three variables - assets, actives, and emission factors - compose the underlying calculation methodology. ghgtools uses a set of standardized data templates to match each record of activity data to an emission factor using information about your assets. Our methodology is built on the best practices set forth by the [GHG Protocol Corporate Standard](https://ghgprotocol.org/corporate-standard).
 
 The following datasheets are required to use ghgtools and calculate GHG emissions:
 
