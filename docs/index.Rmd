@@ -106,8 +106,8 @@ DT3 <- data.table(merge.data.table(DT2, Ecat_lookup, by = c("asset_type", "servi
 DT4 <- data.table(merge.data.table(DT3, eGRIDlookup, sort = FALSE, all.x = TRUE))
 GHGrawdata <- data.table(merge.data.table(DT4, EFL_CO2e, by = c("year", "service_type", "emission_category", "service_subcategory1", "service_subcategory2", "country", "subregion", "unit"), all.x = TRUE, sort = FALSE))
 GHGrawdata[, kg_co2e := usage * kgco2e_perunit]
-GHGrawdata[, MT_co2e := kg_co2e/1000]
-setcolorder(GHGrawdata, c("asset_id", "asset_type", "asset_subtype", "address", "city", "state", "zip", "country", "region", "subregion", "business_unit", "year_built", "sqft", "service_type", "unit", "vendor", "account_id", "meter_number", "date", "year", "cost", "usage", "emission_category", "service_subcategory1", "service_subcategory2", "emission_scope", "kgco2e_perunit", "kg_co2e", "MT_co2e", "ef_source", "ef_publishdate"))
+GHGrawdata[, mt_co2e := kg_co2e/1000]
+setcolorder(GHGrawdata, c("asset_id", "asset_type", "asset_subtype", "address", "city", "state", "zip", "country", "region", "subregion", "business_unit", "year_built", "sqft", "service_type", "unit", "vendor", "account_id", "meter_number", "date", "year", "cost", "usage", "emission_category", "service_subcategory1", "service_subcategory2", "emission_scope", "kgco2e_perunit", "kg_co2e", "mt_co2e", "ef_source", "ef_publishdate"))
 GHGrawdata[is.na(GHGrawdata)] <- ""
 fwrite(GHGrawdata, "GHGrawdata.csv")
 ```
@@ -125,7 +125,7 @@ kbl(GHGrawdata) %>%
 With our GHG inventory calculated, we can produce a number of charts and visuals to start exploring the data. 
 
 ```{r, echo=FALSE, message = FALSE, warning=FALSE}
-ghg_summary <- GHGrawdata[, .(EmissionTotal = sum(MT_co2e)), by = emission_scope]
+ghg_summary <- GHGrawdata[, .(EmissionTotal = sum(mt_co2e)), by = emission_scope]
 ghg_summary[, percentage := (EmissionTotal / sum(EmissionTotal))*100]
 GHG_sum_chart <- ggplot(ghg_summary, aes(x = emission_scope, y = EmissionTotal)) +
   geom_bar(stat = "identity", width = 0.8, fill = "grey", color = "black") +
@@ -143,7 +143,7 @@ print(GHG_sum_chart)
 <br>
 
 ```{r, echo=FALSE, message = FALSE, warning=FALSE}
-Ecat_summary <- GHGrawdata[, .(EmissionTotal = sum(MT_co2e)), by = service_type]
+Ecat_summary <- GHGrawdata[, .(EmissionTotal = sum(mt_co2e)), by = service_type]
 Ecat_sum_chart <- ggplot(Ecat_summary, aes(x = reorder(service_type, EmissionTotal), y = EmissionTotal)) +
   geom_bar(stat = "identity", width = 0.7, fill = "darkgreen", color = "black") +
   labs(title = "GHG Emissions by Activity Type",
@@ -157,7 +157,7 @@ print(Ecat_sum_chart)
 
 ```{r, echo=FALSE, message = FALSE, warning=FALSE}
 scope1and2 <- c("Scope 1", "Scope 2")
-state_data <- GHGrawdata[emission_scope %in% scope1and2, .(EmissionTotal = sum(MT_co2e)), by = state]
+state_data <- GHGrawdata[emission_scope %in% scope1and2, .(EmissionTotal = sum(mt_co2e)), by = state]
 state_data[, EmissionTotal := round(EmissionTotal, 0)]
 state_data[, mid := EmissionTotal - (0.5 * EmissionTotal)]
 state_data_chart <- ggplot(state_data, aes(x = state, y = EmissionTotal)) +

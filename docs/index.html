@@ -81328,7 +81328,6 @@ United States
 West Coast
 </td>
 <td style="text-align:left;">
-Procurement
 </td>
 <td style="text-align:left;">
 Enterprise
@@ -82527,8 +82526,8 @@ DT3 &lt;- data.table(merge.data.table(DT2, Ecat_lookup, by = c(&quot;asset_type&
 DT4 &lt;- data.table(merge.data.table(DT3, eGRIDlookup, sort = FALSE, all.x = TRUE))
 GHGrawdata &lt;- data.table(merge.data.table(DT4, EFL_CO2e, by = c(&quot;year&quot;, &quot;service_type&quot;, &quot;emission_category&quot;, &quot;service_subcategory1&quot;, &quot;service_subcategory2&quot;, &quot;country&quot;, &quot;subregion&quot;, &quot;unit&quot;), all.x = TRUE, sort = FALSE))
 GHGrawdata[, kg_co2e := usage * kgco2e_perunit]
-GHGrawdata[, MT_co2e := kg_co2e/1000]
-setcolorder(GHGrawdata, c(&quot;asset_id&quot;, &quot;asset_type&quot;, &quot;asset_subtype&quot;, &quot;address&quot;, &quot;city&quot;, &quot;state&quot;, &quot;zip&quot;, &quot;country&quot;, &quot;region&quot;, &quot;subregion&quot;, &quot;business_unit&quot;, &quot;year_built&quot;, &quot;sqft&quot;, &quot;service_type&quot;, &quot;unit&quot;, &quot;vendor&quot;, &quot;account_id&quot;, &quot;meter_number&quot;, &quot;date&quot;, &quot;year&quot;, &quot;cost&quot;, &quot;usage&quot;, &quot;emission_category&quot;, &quot;service_subcategory1&quot;, &quot;service_subcategory2&quot;, &quot;emission_scope&quot;, &quot;kgco2e_perunit&quot;, &quot;kg_co2e&quot;, &quot;MT_co2e&quot;, &quot;ef_source&quot;, &quot;ef_publishdate&quot;))
+GHGrawdata[, mt_co2e := kg_co2e/1000]
+setcolorder(GHGrawdata, c(&quot;asset_id&quot;, &quot;asset_type&quot;, &quot;asset_subtype&quot;, &quot;address&quot;, &quot;city&quot;, &quot;state&quot;, &quot;zip&quot;, &quot;country&quot;, &quot;region&quot;, &quot;subregion&quot;, &quot;business_unit&quot;, &quot;year_built&quot;, &quot;sqft&quot;, &quot;service_type&quot;, &quot;unit&quot;, &quot;vendor&quot;, &quot;account_id&quot;, &quot;meter_number&quot;, &quot;date&quot;, &quot;year&quot;, &quot;cost&quot;, &quot;usage&quot;, &quot;emission_category&quot;, &quot;service_subcategory1&quot;, &quot;service_subcategory2&quot;, &quot;emission_scope&quot;, &quot;kgco2e_perunit&quot;, &quot;kg_co2e&quot;, &quot;mt_co2e&quot;, &quot;ef_source&quot;, &quot;ef_publishdate&quot;))
 GHGrawdata[is.na(GHGrawdata)] &lt;- &quot;&quot;
 fwrite(GHGrawdata, &quot;GHGrawdata.csv&quot;)</code></pre>
 <p>The GHG inventory raw data output looks like this:</p>
@@ -82621,7 +82620,7 @@ kgco2e_perunit
 kg_co2e
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-MT_co2e
+mt_co2e
 </th>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
 ef_source
@@ -83958,7 +83957,6 @@ West Coast
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-Procurement
 </td>
 <td style="text-align:left;">
 </td>
@@ -84040,7 +84038,6 @@ West Coast
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-Procurement
 </td>
 <td style="text-align:left;">
 </td>
@@ -84122,7 +84119,6 @@ West Coast
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-Procurement
 </td>
 <td style="text-align:left;">
 </td>
@@ -84204,7 +84200,6 @@ West Coast
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-Procurement
 </td>
 <td style="text-align:left;">
 </td>
@@ -84286,7 +84281,6 @@ West Coast
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-Procurement
 </td>
 <td style="text-align:left;">
 </td>
@@ -84368,7 +84362,6 @@ West Coast
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-Procurement
 </td>
 <td style="text-align:left;">
 </td>
@@ -84450,7 +84443,6 @@ West Coast
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-Procurement
 </td>
 <td style="text-align:left;">
 </td>
@@ -84532,7 +84524,6 @@ West Coast
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-Procurement
 </td>
 <td style="text-align:left;">
 </td>
@@ -84614,7 +84605,6 @@ West Coast
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-Procurement
 </td>
 <td style="text-align:left;">
 </td>
@@ -84696,7 +84686,6 @@ West Coast
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-Procurement
 </td>
 <td style="text-align:left;">
 </td>
@@ -84778,7 +84767,6 @@ West Coast
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-Procurement
 </td>
 <td style="text-align:left;">
 </td>
@@ -84860,7 +84848,6 @@ West Coast
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-Procurement
 </td>
 <td style="text-align:left;">
 </td>
@@ -84942,7 +84929,6 @@ West Coast
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-Procurement
 </td>
 <td style="text-align:left;">
 </td>
@@ -85024,7 +85010,6 @@ West Coast
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-Procurement
 </td>
 <td style="text-align:left;">
 </td>
@@ -85106,7 +85091,6 @@ West Coast
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-Procurement
 </td>
 <td style="text-align:left;">
 </td>
@@ -85188,7 +85172,6 @@ West Coast
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-Procurement
 </td>
 <td style="text-align:left;">
 </td>
@@ -85270,7 +85253,6 @@ West Coast
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-Procurement
 </td>
 <td style="text-align:left;">
 </td>
@@ -85352,7 +85334,6 @@ West Coast
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-Procurement
 </td>
 <td style="text-align:left;">
 </td>
@@ -85434,7 +85415,6 @@ West Coast
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-Procurement
 </td>
 <td style="text-align:left;">
 </td>
@@ -85516,7 +85496,6 @@ West Coast
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-Procurement
 </td>
 <td style="text-align:left;">
 </td>
