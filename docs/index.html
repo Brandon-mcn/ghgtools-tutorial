@@ -619,10 +619,12 @@ pre-populated and ready to go.</p>
 <div id="how-it-works" class="section level2">
 <h2>How it Works</h2>
 <p>Most of the functionality in ghgtools comes from the <a href="https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html">data.table</a>
-package.</p>
+package. This package provides powerful functionality for manipulating
+date tables.</p>
 <pre class="r"><code>library(data.table)</code></pre>
-<p>Next, we select our desired global warming potentials
-<em>(GWPS)</em>. You can learn more about global warming potentials by
+<p>In order to consolidate emissions data across multiple greenhouse
+gasses, we need to select global warming potentials (GWPs). You can
+learn more about different values of global warming potentials by
 follwoing <a href="https://www.epa.gov/ghgemissions/understanding-global-warming-potentials">this
 link</a>. ghgtools defaults to the UNFCCC guidelines, which require the
 use of GWP values from the IPCC’s Fifth Assessment Report (AR5).</p>
@@ -82515,7 +82517,7 @@ passenger-mile
 <p><br> At this point, we have defined each of the required input
 variables - assets, activities, and emission factors - and loaded the
 data in the required templates. The following code combines these three
-datasheets, assigned emission factors, and calculates GHG emissions for
+datasheets, assignes emission factors, and calculates GHG emissions for
 each record of activity data.</p>
 <pre class="r"><code>eGRIDlookup &lt;- fread(&quot;eGRID_lookup.csv&quot;)
 Ecat_lookup &lt;- fread(&quot;Ecat_lookup.csv&quot;)

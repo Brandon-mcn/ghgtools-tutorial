@@ -30,13 +30,13 @@ The following datasheets are required to use ghgtools and calculate GHG emission
 
 ## How it Works
 
-Most of the functionality in ghgtools comes from the [data.table](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) package. 
+Most of the functionality in ghgtools comes from the [data.table](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) package. This package provides powerful functionality for manipulating date tables.
 
 ```{r, include=TRUE, message=FALSE, warning=FALSE}
 library(data.table)
 ```
 
-Next, we select our desired global warming potentials _(GWPS)_. You can learn more about global warming potentials by follwoing [this link](https://www.epa.gov/ghgemissions/understanding-global-warming-potentials). ghgtools defaults to the UNFCCC guidelines, which require the use of GWP values from the IPCC's Fifth Assessment Report (AR5).
+In order to consolidate emissions data across multiple greenhouse gasses, we need to select global warming potentials (GWPs). You can learn more about different values of global warming potentials by follwoing [this link](https://www.epa.gov/ghgemissions/understanding-global-warming-potentials). ghgtools defaults to the UNFCCC guidelines, which require the use of GWP values from the IPCC's Fifth Assessment Report (AR5).
 
 ```{r, include=TRUE, warning=FALSE}
 GWP <- "AR5"
@@ -94,7 +94,7 @@ kbl(ActivityData.narm) %>%
 ```
 
 <br>
-At this point, we have defined each of the required input variables - assets, activities, and emission factors - and loaded the data in the required templates. The following code combines these three datasheets, assigned emission factors, and calculates GHG emissions for each record of activity data. 
+At this point, we have defined each of the required input variables - assets, activities, and emission factors - and loaded the data in the required templates. The following code combines these three datasheets, assignes emission factors, and calculates GHG emissions for each record of activity data. 
 
 ```{r, echo=TRUE, warning=FALSE, message=FALSE}
 eGRIDlookup <- fread("eGRID_lookup.csv")
